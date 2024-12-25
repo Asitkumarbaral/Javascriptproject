@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR CODE GENERATOR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+            text-align: center;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 50%;
+            height: 500px;
+            margin: 150px;
+            background-color: aqua;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            box-sizing: border-box;
+
+            box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .container h2 {
+            margin-bottom: 200px;
+            font-size: 40px;
+            color: #d24242;
+
+
+        }
+
+        .container h2:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
+        .container input {
+            font-size: 25px;
+            width: 50%;
+            border-radius: 8px solid grey;
+            margin-bottom: 10px;
+            background-color: aliceblue;
+            color: brown;
+        }
+
+        .container button {
+            cursor: pointer;
+            height: 30px;
+            font-size: 10px;
+            margin-bottom: 50px;
+            border-bottom: 5px 5px 5px 5px;
+            border-radius: 5px;
+            color: rgb(0, 0, 0);
+        }
+
+        .container button:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
+        .Img-Text {
+            margin-top: 3px;
+            margin-bottom: 2px;
+            display: none;
+        }
+
+        .Img-Text img {
+            height: 80px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>QR GENERATOR </h2>
+        <input type="text" id="Input" placeholder="Enter URL OR LINK">
+        <br>
+        <div class="Img-Text" id="Img-id">
+            <img src="" id="img" alt="">
+        </div>
+        <button type="button" id="btn">Click To Generate Qr Code</button>
+    </div>
+</body>
+<script>
+    const btn = document.querySelector('#btn');
+    const image = document.querySelector('#img');
+    const imagediv = document.querySelector('#Img-id');
+    const input = document.querySelector('Input')
+
+    btn.addEventListener('click', () => {
+        const url = input.value.trim();
+        if (url === '') {
+            alert("Enter Correct Url")
+            return;
+        }
+        const generate = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(url)}&size=150x150`;
+        image.src = generate;
+        imagediv.style.display = "block";
+    })
+</script>
+
+</html>
